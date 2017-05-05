@@ -12,11 +12,14 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings){
 
 	for(uint32_t id=0;id<this->_fsettings.get<uint32_t>("number-of-pedestrians");++id)
 		this->_pedestrians.push_back(Pedestrian(id,this->_fsettings.get<double>("min-speed"),this->_fsettings.get<double>("max-speed"),this->_fsettings.get<double>("delay"),this->_fsettings.get<unsigned int>("model"),reference_points,limits));
+
+	
 		
 }
 void Simulator::run(void){
-	
+  	
 }
+
 Simulator::~Simulator(void){
 
 }

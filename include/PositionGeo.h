@@ -7,7 +7,8 @@ class PositionGeo{
    public:  PositionGeo(void);
             PositionGeo(const double &_lon,const double &_lat);
             ~PositionGeo(void);
-				double lon(void) const;
-				double lat(void) const;
+
+            double lon(void) const;
+            double lat(void) const;
 };
 #endif
