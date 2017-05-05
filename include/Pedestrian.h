@@ -17,7 +17,7 @@ class Pedestrian{
 				std::vector<PositionGeo> _path;//memory
 
 	public:	Pedestrian(void);
-				Pedestrian(const uint32_t&,const double&,const double&,const double&,const std::vector<std::vector<PositionGeo>>&);
+				Pedestrian(const uint32_t&,const double&,const double&,const double&,const std::vector<PositionGeo>&);
 				~Pedestrian(void);
 };
 #endif
