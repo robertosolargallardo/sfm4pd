@@ -1,0 +1,10 @@
+{
+	"osrm" : 
+		{
+			"host" : "http://citiaps2.diinf.usach.cl",
+			"port" : "5000",
+			"resource" : "/route/v1/driving/",
+			"params" : "steps=true"
+		}
+
+}
