@@ -1,0 +1,194 @@
+#curl "http://158.170.35.88:5000/route/v1/driving/-71.61746,-33.04816;-71.62030,-33.04500?steps=true"
+{
+	"code": "Ok",
+	"routes": [{
+		"geometry": "~uuhE`xbtLqBg@iErReDy@QlA_Cc@",
+		"legs": [{
+			"summary": "Independencia, Molina",
+			"weight": 425.7,
+			"duration": 425.7,
+			"steps": [{
+				"intersections": [{
+					"out": 0,
+					"entry": [true],
+					"bearings": [17],
+					"location": [-71.617451, -33.048162]
+				}],
+				"geometry": "~uuhE`xbtLqBg@",
+				"mode": "walking",
+				"maneuver": {
+					"bearing_after": 17,
+					"bearing_before": 0,
+					"location": [-71.617451, -33.048162],
+					"type": "depart"
+				},
+				"weight": 47.7,
+				"duration": 47.7,
+				"name": "Las Heras",
+				"distance": 66.2
+			}, {
+				"intersections": [{
+					"out": 3,
+					"in": 2,
+					"entry": [true, true, false, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.617246, -33.047592]
+				}, {
+					"out": 2,
+					"in": 0,
+					"entry": [false, true, true],
+					"bearings": [105, 195, 285],
+					"location": [-71.617789, -33.047411]
+				}, {
+					"out": 3,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.61846, -33.047188]
+				}, {
+					"out": 3,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.619474, -33.046858]
+				}, {
+					"out": 2,
+					"in": 0,
+					"entry": [false, true, true],
+					"bearings": [105, 195, 285],
+					"location": [-71.620016, -33.046696]
+				}],
+				"geometry": "lruhExvbtLET]tAk@dCaAhE_@lBWhA",
+				"mode": "walking",
+				"maneuver": {
+					"bearing_after": 291,
+					"bearing_before": 15,
+					"location": [-71.617246, -33.047592],
+					"modifier": "left",
+					"type": "turn"
+				},
+				"weight": 227.8,
+				"duration": 227.8,
+				"name": "Independencia",
+				"distance": 313.5
+			}, {
+				"intersections": [{
+					"out": 0,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.620385, -33.046583]
+				}],
+				"geometry": "bluhEljctLi@MUGi@Os@QGA",
+				"mode": "walking",
+				"maneuver": {
+					"bearing_after": 14,
+					"bearing_before": 289,
+					"location": [-71.620385, -33.046583],
+					"modifier": "right",
+					"type": "turn"
+				},
+				"weight": 69.4,
+				"duration": 69.4,
+				"name": "Molina",
+				"distance": 96.4
+			}, {
+				"intersections": [{
+					"out": 3,
+					"in": 2,
+					"entry": [true, true, false, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.620097, -33.045751]
+				}],
+				"geometry": "|fuhErhctLQlA",
+				"mode": "walking",
+				"maneuver": {
+					"bearing_after": 285,
+					"bearing_before": 15,
+					"location": [-71.620097, -33.045751],
+					"modifier": "left",
+					"type": "turn"
+				},
+				"weight": 27.4,
+				"duration": 27.4,
+				"name": "Salvador Donoso",
+				"distance": 38.1
+			}, {
+				"intersections": [{
+					"out": 0,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 210, 300],
+					"location": [-71.62049, -33.045658]
+				}],
+				"geometry": "jfuhE`kctL_Ce@",
+				"mode": "walking",
+				"maneuver": {
+					"bearing_after": 14,
+					"bearing_before": 285,
+					"location": [-71.62049, -33.045658],
+					"modifier": "right",
+					"type": "turn"
+				},
+				"weight": 52.5,
+				"duration": 52.5,
+				"name": "Huito",
+				"distance": 72.9
+			}, {
+				"intersections": [{
+					"out": 2,
+					"in": 1,
+					"entry": [true, false, true],
+					"bearings": [105, 195, 285],
+					"location": [-71.620295, -33.045023]
+				}],
+				"geometry": "jbuhEzictL?@",
+				"mode": "walking",
+				"maneuver": {
+					"bearing_after": 286,
+					"bearing_before": 14,
+					"location": [-71.620295, -33.045023],
+					"modifier": "left",
+					"type": "turn"
+				},
+				"weight": 0.9,
+				"duration": 0.9,
+				"name": "Yungay",
+				"distance": 1.2
+			}, {
+				"intersections": [{
+					"in": 0,
+					"entry": [true],
+					"bearings": [107],
+					"location": [-71.620307, -33.04502]
+				}],
+				"geometry": "jbuhE|ictL",
+				"mode": "walking",
+				"maneuver": {
+					"bearing_after": 0,
+					"bearing_before": 287,
+					"location": [-71.620307, -33.04502],
+					"type": "arrive"
+				},
+				"weight": 0,
+				"duration": 0,
+				"name": "Yungay",
+				"distance": 0
+			}],
+			"distance": 588.2
+		}],
+		"weight_name": "duration",
+		"weight": 425.7,
+		"duration": 425.7,
+		"distance": 588.2
+	}],
+	"waypoints": [{
+		"hint": "CA8AgNsRAID4KwAA3QEAACAAAAAAAAAAAAAAAN0BAAAgAAAAAAAAAAAAAAB1CgAAAQAAAFU0u_ueuQf-TDS7-6C5B_4AAAMDANt46Q==",
+		"name": "Las Heras",
+		"location": [-71.617451, -33.048162]
+	}, {
+		"hint": "nwwAgPcRAIAYBgAAUAEAAAkAAAAAAAAAAAAAAFABAAAJAAAAAAAAAAAAAADtCAAAAQAAAC0pu_vkxQf-NCm7-_jFB_4AAAMDANt46Q==",
+		"name": "Yungay",
+		"location": [-71.620307, -33.04502]
+	}]
+}

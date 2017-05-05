@@ -1,0 +1,100 @@
+#curl "http://158.170.35.88:5000/route/v1/driving/-71.61746,-33.04816;-71.62030,-33.04500?steps=true"
+{
+	"code": "Ok",
+	"routes": [{
+		"legs": [{
+			"steps": [{
+				"intersections": [{
+					"out": 0,
+					"entry": [true],
+					"bearings": [17],
+					"location": [-71.617451, -33.048162]
+				}]
+			}, {
+				"intersections": [{
+					"out": 3,
+					"in": 2,
+					"entry": [true, true, false, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.617246, -33.047592]
+				}, {
+					"out": 2,
+					"in": 0,
+					"entry": [false, true, true],
+					"bearings": [105, 195, 285],
+					"location": [-71.617789, -33.047411]
+				}, {
+					"out": 3,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.61846, -33.047188]
+				}, {
+					"out": 3,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.619474, -33.046858]
+				}, {
+					"out": 2,
+					"in": 0,
+					"entry": [false, true, true],
+					"bearings": [105, 195, 285],
+					"location": [-71.620016, -33.046696]
+				}]
+			}, {
+				"intersections": [{
+					"out": 0,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.620385, -33.046583]
+				}]
+			}, {
+				"intersections": [{
+					"out": 3,
+					"in": 2,
+					"entry": [true, true, false, true],
+					"bearings": [15, 105, 195, 285],
+					"location": [-71.620097, -33.045751]
+				}]
+			}, {
+				"intersections": [{
+					"out": 0,
+					"in": 1,
+					"entry": [true, false, true, true],
+					"bearings": [15, 105, 210, 300],
+					"location": [-71.62049, -33.045658]
+				}]
+			}, {
+				"intersections": [{
+					"out": 2,
+					"in": 1,
+					"entry": [true, false, true],
+					"bearings": [105, 195, 285],
+					"location": [-71.620295, -33.045023]
+				}]
+			}, {
+				"intersections": [{
+					"in": 0,
+					"entry": [true],
+					"bearings": [107],
+					"location": [-71.620307, -33.04502]
+				}]
+			}]
+		}],
+		"weight_name": "duration",
+		"weight": 425.7,
+		"duration": 425.7,
+		"distance": 588.2
+	}],
+	"waypoints": [{
+		"hint": "CA8AgNsRAID4KwAA3QEAACAAAAAAAAAAAAAAAN0BAAAgAAAAAAAAAAAAAAB1CgAAAQAAAFU0u_ueuQf-TDS7-6C5B_4AAAMDANt46Q==",
+		"name": "Las Heras",
+		"location": [-71.617451, -33.048162]
+	}, {
+		"hint": "nwwAgPcRAIAYBgAAUAEAAAkAAAAAAAAAAAAAAFABAAAJAAAAAAAAAAAAAADtCAAAAQAAAC0pu_vkxQf-NCm7-_jFB_4AAAMDANt46Q==",
+		"name": "Yungay",
+		"location": [-71.620307, -33.04502]
+	}]
+}
