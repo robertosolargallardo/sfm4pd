@@ -6,19 +6,12 @@
 	"max-speed" : "2",
 	"delay"     : "1",
 
-	"encounter-points" : [
+	"reference-points" : [
 		{
 			"lat" : "-33.045944",
 			"lon" : "-71.616361"
 		}
 	],
-
-	"osrm" : {
-		"host" : "http://citiaps2.diinf.usach.cl",
-		"port" : "5000",
-		"resource" : "/route/v1/driving/",
-		"params" : "steps=true"
-	},
 
 	"limits" : {
 		"bottom-left" : {

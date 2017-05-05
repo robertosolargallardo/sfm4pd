@@ -7,12 +7,20 @@ std::random_device device;
 std::mt19937 rng(device());
 
 int main(int argc,char **argv){
+	/*configure osrm*/
+	boost::property_tree::ptree fosrm;
+	read_json(argv[2], fosrm);
+	OSRMWrapper::host=fosrm.get<std::string>("osrm.host");
+	OSRMWrapper::port=fosrm.get<std::string>("osrm.port");
+	OSRMWrapper::resource=fosrm.get<std::string>("osrm.resource");
+	OSRMWrapper::params=fosrm.get<std::string>("osrm.params");
+	/*configure osrm*/
+
 	boost::property_tree::ptree fsettings;
 	read_json(argv[1], fsettings);
-
 	Simulator s(fsettings);
 	s.run();
-	
+
 	/*std::string host("http://citiaps2.diinf.usach.cl");
 	std::string port("5000");
 	std::string resource("/route/v1/driving/");

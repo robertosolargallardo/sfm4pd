@@ -1,6 +1,10 @@
 #include "../include/OSRMWrapper.h"
 
 std::string OSRMWrapper::buffer=std::string();
+std::string OSRMWrapper::host=std::string();
+std::string OSRMWrapper::port=std::string();
+std::string OSRMWrapper::resource=std::string();
+std::string OSRMWrapper::params=std::string();
 
 size_t OSRMWrapper::callback(void *contents, size_t size, size_t nmemb, void *userp){ 
 	size_t realsize=size*nmemb;
@@ -8,9 +12,9 @@ size_t OSRMWrapper::callback(void *contents, size_t size, size_t nmemb, void *us
    return(realsize);
 }
 
-boost::property_tree::ptree OSRMWrapper::request(const std::string &_host,const std::string &_port,const std::string &_resource,const PositionGeo &_src,const PositionGeo &_dst,const std::string &_params){
+boost::property_tree::ptree OSRMWrapper::request(const PositionGeo &_src,const PositionGeo &_dst){
 	boost::property_tree::ptree fresponse;
-	std::string url=std::string(_host + std::string(":") + _port + _resource + boost::lexical_cast<std::string>(_src.lon()) + "," + boost::lexical_cast<std::string>(_src.lat()) + ";" + boost::lexical_cast<std::string>(_dst.lon()) + "," + boost::lexical_cast<std::string>(_dst.lat()) + "?" + _params);
+	std::string url=std::string(host + std::string(":") + port + resource + boost::lexical_cast<std::string>(_src.lon()) + "," + boost::lexical_cast<std::string>(_src.lat()) + ";" + boost::lexical_cast<std::string>(_dst.lon()) + "," + boost::lexical_cast<std::string>(_dst.lat()) + "?" + params);
 	
 	std::cout << url << std::endl;
 

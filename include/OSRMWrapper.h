@@ -9,8 +9,12 @@
 
 class OSRMWrapper{
 	public:	static std::string buffer;
+				static std::string host;
+				static std::string port;
+				static std::string resource;
+				static std::string params;
 
 				static size_t callback(void*,size_t,size_t,void*);
-				static boost::property_tree::ptree request(const std::string&,const std::string&,const std::string&,const PositionGeo&,const PositionGeo&,const std::string&);
+				static boost::property_tree::ptree request(const PositionGeo&,const PositionGeo&);
 };
 #endif
