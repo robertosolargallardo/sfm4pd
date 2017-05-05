@@ -1,0 +1,33 @@
+{
+	"number-of-pedestrians" : "1000",
+	"model" : "0",
+	"duration"  : "100",
+	"min-speed" : "1",
+	"max-speed" : "2",
+	"delay"     : "1",
+
+	"encounter-points" : [
+		{
+			"lat" : "-33.045944",
+			"lon" : "-71.616361"
+		}
+	],
+
+	"osrm" : {
+		"host" : "http://citiaps2.diinf.usach.cl",
+		"port" : "5000",
+		"resource" : "/route/v1/driving/",
+		"params" : "steps=true"
+	},
+
+	"limits" : {
+		"bottom-left" : {
+			"lat": "-33.1787548838",
+			"lon": "-71.7129760672"
+		},
+		"top-right" : {
+			"lat": "-32.9858316532",
+			"lon": "-71.5047878338"
+		}
+	}
+}
