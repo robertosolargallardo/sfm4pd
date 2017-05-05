@@ -2,6 +2,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include <boost/property_tree/json_parser.hpp>
 #include "../include/Simulator.h"
+#include "../include/OSRMWrapper.h"
 
 std::random_device device;  
 std::mt19937 rng(device());
