@@ -1,48 +1,103 @@
 #include "../include/Pedestrian.h"
 Pedestrian::Pedestrian(void){
-	;
+   ;
 }
+Pedestrian::Pedestrian(const Pedestrian &_pedestrian){
+	this->_id=_pedestrian._id;
+	this->_min_speed=_pedestrian._min_speed;
+	this->_max_speed=_pedestrian._max_speed;
+	this->_delay=_pedestrian._delay;
+	this->_model=_pedestrian._model;
+	this->_path=_pedestrian._path;
+}
+Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const double &_delay,const unsigned int &_model,const std::list<PositionGeo> &_reference_points,const std::pair<PositionGeo,PositionGeo> &_limits){
+   this->_id=_id;
+   this->_min_speed=_min_speed;
+   this->_max_speed=_max_speed;
+   this->_delay=_delay;
+   this->random_init_position(_limits,*_reference_points.begin());
 
-Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const double &_delay,const unsigned int &_model,const std::vector<PositionGeo> &_reference_points,const std::pair<PositionGeo,PositionGeo> &_limits){
-	this->_id=_id;
-	std::uniform_real_distribution<double> speed(_min_speed,_max_speed);
-	this->_speed=speed(rng);
+   switch(_model){
+      case SHORTEST_PATH:{
+         double mindist=DBL_MAX,d=0.0;
+         boost::property_tree::ptree optimal_route;
 
-        PositionGeo p = this->get_random_init_position( _limits, _reference_points.at(0) );
+         for(auto& reference_point : _reference_points){
+            boost::property_tree::ptree fresponse=OSRMWrapper::request(this->_current,reference_point); 
+            boost::property_tree::ptree route=fresponse.get_child("routes").begin()->second;
 
-	std::cout << "Limits (" << std::get<0>(_limits).lat() << "," << std::get<0>(_limits).lon() << ") : ("
-            << std::get<1>(_limits).lat() << "," << std::get<1>(_limits).lon() << ") - Position lat="
-            << p.lat() << " - lon=" << p.lon() << std::endl;
+            d=route.get<double>("distance");
+            if(d<mindist){
+               mindist=d;
+               optimal_route=route;
+            }
+         }
+			this->extract_path(optimal_route);
+         break;
+      }
+      default:{
+         std::cerr << "Error::movement model not implemented" << std::endl;
+         exit(EXIT_FAILURE);
+      }
+   }
+}
+void Pedestrian::extract_path(boost::property_tree::ptree &_route){
+   boost::property_tree::ptree steps=_route.get_child("legs").begin()->second.get_child("steps");
 
-	switch(_model){
-		case SHORTEST_PATH:{
+	for(auto& step : steps){
+		for(auto& intersection : step.second.get_child("intersections")){
+   		boost::property_tree::ptree::iterator lon=intersection.second.get_child("location").begin();
+   		boost::property_tree::ptree::iterator lat=++intersection.second.get_child("location").begin();
 
-			break;
-		}
-		default:{
-			std::cerr << "Error::movement model not implemented" << std::endl;
-			exit(EXIT_FAILURE);
+			this->_path.push_back(PositionGeo(lat->second.get<double>(""),lon->second.get<double>("")));
 		}
 	}
 }
+void Pedestrian::random_init_position( const std::pair<PositionGeo,PositionGeo> &_limits, const PositionGeo &_reference_point ){
+   std::uniform_real_distribution<double> random_lat(std::get<0>(_limits).lat(),std::get<1>(_limits).lat());
+   std::uniform_real_distribution<double> random_lon(std::get<0>(_limits).lon(),std::get<1>(_limits).lon());
 
-PositionGeo Pedestrian::get_random_init_position( const std::pair<PositionGeo,PositionGeo> &_limits, const PositionGeo &_reference_point ){
-	//while(1){
+   while(true){
+      double lat=random_lat(rng);
+      double lon=random_lon(rng);
+      PositionGeo p(lat,lon);
 
-		//Crear punto aleatorio - DEBE ESTAR DENTRO DE LOS LIMITES DE LIMITS
-      //double range_latitude = _limits.get<1>.lat() -  _limits.get<0>.lat();
-		//double range_longitude = _limits.get<1>.lon() -  _limits.get<1>.lon();
+      boost::property_tree::ptree fresponse=OSRMWrapper::request(p,_reference_point);  
 
-  std::uniform_real_distribution<double> random_latitude( std::get<0>(_limits).lat(), std::get<1>(_limits).lat() );
-  double latitude = random_latitude(rng);
-
-  std::uniform_real_distribution<double> random_longitude( std::get<0>(_limits).lon(), std::get<1>(_limits).lon() );
-  double longitude = random_longitude(rng);
-		
-	//}
-  return PositionGeo(latitude,longitude);
+      if(fresponse.get<std::string>("code").compare("Ok")==0){
+			this->_current=p;
+			break;
+		}
+   }
 }
 
 Pedestrian::~Pedestrian(void){
-	;
+   this->_path.clear();
+}
+
+void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> &_neighbors){
+	double d=0.0;
+	
+   std::uniform_real_distribution<double> random_speed(_min_speed,_max_speed);
+   double speed=random_speed(rng);
+
+	while(!this->_path.empty()){
+		PositionGeo destination=this->_path.front();
+		d=this->_current.distance(destination);
+
+		if(speed==0.0){
+			break;
+		}
+		else if(d>=speed){
+			this->_current=destination;
+			this->_path.pop_front();
+			speed-=d;
+		}
+		else{
+			PositionGeo direction=(destination-this->_current);
+			direction.normalize();
+			this->_current+=direction*speed;
+			break;
+		}
+	}
 }

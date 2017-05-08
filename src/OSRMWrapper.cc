@@ -16,8 +16,6 @@ boost::property_tree::ptree OSRMWrapper::request(const PositionGeo &_src,const P
 	boost::property_tree::ptree fresponse;
 	std::string url=std::string(host + std::string(":") + port + resource + boost::lexical_cast<std::string>(_src.lon()) + "," + boost::lexical_cast<std::string>(_src.lat()) + ";" + boost::lexical_cast<std::string>(_dst.lon()) + "," + boost::lexical_cast<std::string>(_dst.lat()) + "?" + params);
 	
-	std::cout << url << std::endl;
-
    CURL *curl=NULL;
 	CURLcode res;
    curl_global_init(CURL_GLOBAL_ALL);

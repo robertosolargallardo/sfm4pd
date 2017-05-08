@@ -22,8 +22,7 @@ int main(int argc,char **argv){
 	Simulator s(fsettings);
 	s.run();
 
-
-	PositionGeo p1(1,1);
+	/*PositionGeo p1(1,1);
 	PositionGeo p2(2,2);
 	PositionGeo p3=p2-p1;
 	PositionGeo p4=p2+p1;
@@ -40,7 +39,7 @@ int main(int argc,char **argv){
 	std::cout << p8 << std::endl;
 	p8.normalize();
 	std::cout << p8 << std::endl;
-	std::cout << p1.distance(p2) << std::endl;
+	std::cout << p1.distance(p2) << std::endl;*/
 
 	/*std::string host("http://citiaps2.diinf.usach.cl");
 	std::string port("5000");
