@@ -5,8 +5,10 @@ Simulator::Simulator(void){
 Simulator::Simulator(const boost::property_tree::ptree &_fsettings){
    this->_fsettings=_fsettings;
    std::list<PositionGeo> reference_points;
-   std::pair<PositionGeo,PositionGeo> limits(PositionGeo(this->_fsettings.get<double>("limits.bottom-left.lat"),this->_fsettings.get<double>("limits.bottom-left.lon")),
-                                             PositionGeo(this->_fsettings.get<double>("limits.top-right.lat"),this->_fsettings.get<double>("limits.top-right.lon")));
+   std::pair<PositionGeo,PositionGeo> limits(PositionGeo(this->_fsettings.get<double>("limits.bottom-left.lat"),
+																			this->_fsettings.get<double>("limits.bottom-left.lon")),
+                                             PositionGeo(this->_fsettings.get<double>("limits.top-right.lat"),
+																			this->_fsettings.get<double>("limits.top-right.lon")));
    
    for(auto& freference_point : this->_fsettings.get_child("reference-points"))
       reference_points.push_back(PositionGeo(freference_point.second.get<double>("lat"),freference_point.second.get<double>("lon")));
@@ -22,6 +24,10 @@ void Simulator::run(void){
 	std::vector<std::shared_ptr<Pedestrian>> neighbors;
 
 	for(uint32_t t=0U;t<this->_fsettings.get<uint32_t>("duration");t++){
+		std::ofstream ofs("output/positions_"+boost::lexical_cast<std::string>(t)+".txt");
+		for(auto& pedestrian : this->_pedestrians)
+			ofs << pedestrian.current() << std::endl;
+
 		std::vector<Pedestrian> pedestrians;
 		for(auto& pedestrian : this->_pedestrians){
 			Pedestrian p(pedestrian);
@@ -30,10 +36,6 @@ void Simulator::run(void){
 		}
 		this->_pedestrians.clear();
 		this->_pedestrians=pedestrians;
-
-		std::ofstream ofs("output/positions_"+boost::lexical_cast<std::string>(t)+".txt");
-		for(auto& pedestrian : this->_pedestrians)
-			ofs << pedestrian.current() << std::endl;
 	}
 }
 
