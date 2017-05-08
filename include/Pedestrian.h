@@ -33,5 +33,7 @@ class Pedestrian{
             ~Pedestrian(void);
 
             void update_position(const std::vector<std::shared_ptr<Pedestrian>>&);
+      
+            PositionGeo current(void);
 };
 #endif

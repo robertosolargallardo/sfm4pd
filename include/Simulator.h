@@ -2,6 +2,8 @@
 #define _SIMULATOR_H_
 #include <boost/property_tree/ptree.hpp>
 #include <vector>
+#include <fstream>
+#include <iostream>
 #include "Pedestrian.h"
 #include "PositionGeo.h"
 

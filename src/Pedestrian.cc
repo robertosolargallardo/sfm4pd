@@ -9,6 +9,7 @@ Pedestrian::Pedestrian(const Pedestrian &_pedestrian){
 	this->_delay=_pedestrian._delay;
 	this->_model=_pedestrian._model;
 	this->_path=_pedestrian._path;
+	this->_current=_pedestrian._current;
 }
 Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const double &_delay,const unsigned int &_model,const std::list<PositionGeo> &_reference_points,const std::pair<PositionGeo,PositionGeo> &_limits){
    this->_id=_id;
@@ -100,4 +101,7 @@ void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> 
 			break;
 		}
 	}
+}
+PositionGeo Pedestrian::current(void){
+	return(this->_current);
 }

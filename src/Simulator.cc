@@ -20,10 +20,9 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings){
 }
 void Simulator::run(void){
 	std::vector<std::shared_ptr<Pedestrian>> neighbors;
-	std::vector<Pedestrian> pedestrians;
 
 	for(uint32_t t=0U;t<this->_fsettings.get<uint32_t>("duration");t++){
-		std::cout << t << std::endl;
+		std::vector<Pedestrian> pedestrians;
 		for(auto& pedestrian : this->_pedestrians){
 			Pedestrian p(pedestrian);
 			p.update_position(neighbors);
@@ -31,6 +30,10 @@ void Simulator::run(void){
 		}
 		this->_pedestrians.clear();
 		this->_pedestrians=pedestrians;
+
+		std::ofstream ofs("output/positions_"+boost::lexical_cast<std::string>(t)+".txt");
+		for(auto& pedestrian : this->_pedestrians)
+			ofs << pedestrian.current() << std::endl;
 	}
 }
 
