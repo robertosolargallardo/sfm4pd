@@ -7,6 +7,7 @@
 #include <boost/lexical_cast.hpp>
 #include "PositionGeo.h"
 
+class PositionGeo;
 class OSRMWrapper{
 	public:	static std::string buffer;
 				static std::string host;

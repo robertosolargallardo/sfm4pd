@@ -9,6 +9,8 @@ std::mt19937 rng(device());
 
 int main(int argc,char **argv){
 	/*configure osrm*/
+	rng.seed(10);
+
 	boost::property_tree::ptree fosrm;
 	read_json(argv[2], fosrm);
 	OSRMWrapper::host=fosrm.get<std::string>("osrm.host");

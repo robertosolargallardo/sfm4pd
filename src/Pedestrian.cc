@@ -34,6 +34,12 @@ Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double
             }
          }
 			this->extract_path(optimal_route);
+			this->_current=this->_path.front();
+			this->_path.pop_front();
+
+			//std::cout << this->_current << std::endl;
+			//std::cout << this->_path.back() << std::endl;
+
          break;
       }
       default:{
@@ -54,7 +60,7 @@ void Pedestrian::extract_path(boost::property_tree::ptree &_route){
 		}
 	}
 }
-void Pedestrian::random_init_position( const std::pair<PositionGeo,PositionGeo> &_limits, const PositionGeo &_reference_point ){
+void Pedestrian::random_init_position( const std::pair<PositionGeo,PositionGeo> &_limits,const PositionGeo &_reference_point ){
    std::uniform_real_distribution<double> random_lat(std::get<0>(_limits).lat(),std::get<1>(_limits).lat());
    std::uniform_real_distribution<double> random_lon(std::get<0>(_limits).lon(),std::get<1>(_limits).lon());
 
@@ -78,26 +84,36 @@ Pedestrian::~Pedestrian(void){
 
 void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> &_neighbors){
 	double d=0.0;
-	
    std::uniform_real_distribution<double> random_speed(_min_speed,_max_speed);
    double speed=random_speed(rng);
 
+	//std::cout << "entra" << std::endl;
 	while(!this->_path.empty()){
 		PositionGeo destination=this->_path.front();
 		d=this->_current.distance(destination);
-
-		if(speed==0.0){
-			break;
-		}
-		else if(d>=speed){
+		
+		if(speed>=d){
 			this->_current=destination;
 			this->_path.pop_front();
 			speed-=d;
 		}
 		else{
+			destination.to_rad();
+			this->_current.to_rad();
 			PositionGeo direction=(destination-this->_current);
-			direction.normalize();
-			this->_current+=direction*speed;
+			//direction.normalize();
+			/*std::cout <<"distance::"<< d << std::endl;
+			std::cout <<"speed::"<< speed << std::endl;
+			std::cout <<"current::"<< this->_current << std::endl;
+			std::cout <<"destination::"<< destination << std::endl;
+			std::cout <<"direction::"<< direction<< std::endl;*/
+			
+			std::normal_distribution<double> angle(0,0.01);
+			direction.rotate(angle(rng));
+			this->_current+=direction*(speed);
+			this->_current.to_deg();
+			//std::cout <<"new current::"<< this->_current << std::endl;
+			//exit(0);
 			break;
 		}
 	}
