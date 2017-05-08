@@ -1,5 +1,7 @@
 #ifndef _POSITIONGEO_H_
 #define _POSITIONGEO_H_
+#include <iostream>
+#include <math.h>
 
 class PositionGeo{
    private: double _lon,_lat;
@@ -10,5 +12,21 @@ class PositionGeo{
 
             double lon(void) const;
             double lat(void) const;
+
+            PositionGeo& operator+=(const PositionGeo&);
+            PositionGeo& operator=(const PositionGeo&);
+            PositionGeo operator+(const PositionGeo&);
+            PositionGeo operator-(const PositionGeo&);
+
+            PositionGeo& operator*(const double&);
+
+            bool operator==(const PositionGeo&);
+            bool operator!=(const PositionGeo&);
+
+            void normalize(void);
+            double distance(const PositionGeo&);
+            double norm(void);
+
+            friend std::ostream& operator<<(std::ostream&,const PositionGeo&);
 };
 #endif
