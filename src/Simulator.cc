@@ -2,7 +2,8 @@
 Simulator::Simulator(void) {
 
 }
-Simulator::Simulator(const boost::property_tree::ptree &_fsettings) {
+Simulator::Simulator(const boost::property_tree::ptree &_fsettings,const std::string &_outputdir) {
+    this->_outputdir=_outputdir;
     this->_fsettings=_fsettings;
     std::list<PositionGeo> reference_points;
     std::pair<PositionGeo,PositionGeo> limits(PositionGeo(this->_fsettings.get<double>("limits.bottom-left.lat"),this->_fsettings.get<double>("limits.bottom-left.lon")),PositionGeo(this->_fsettings.get<double>("limits.top-right.lat"),this->_fsettings.get<double>("limits.top-right.lon")));
@@ -25,7 +26,7 @@ void Simulator::run(const uint32_t &_duration,const bool &_save_to_disk) {
 
     for(uint32_t t=0U; t<_duration; t++) {
         if(_save_to_disk) {
-            std::ofstream ofs("output/positions_"+boost::lexical_cast<std::string>(t)+".txt");
+            std::ofstream ofs(this->_outputdir+"/"+PREFIX_FILE_NAME+boost::lexical_cast<std::string>(t)+SUFFIX_FILE_NAME);
             for(auto& pedestrian : this->_pedestrians)
                 ofs << pedestrian.current() << std::endl;
         }
