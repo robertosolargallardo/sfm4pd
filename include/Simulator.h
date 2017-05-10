@@ -6,6 +6,7 @@
 #include <iostream>
 #include "Pedestrian.h"
 #include "PositionGeo.h"
+#define CALIBRATION_TIME 10U
 
 class Simulator {
 private:
