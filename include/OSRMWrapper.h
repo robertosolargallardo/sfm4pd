@@ -8,14 +8,15 @@
 #include "PositionGeo.h"
 
 class PositionGeo;
-class OSRMWrapper{
-	public:	static std::string buffer;
-				static std::string host;
-				static std::string port;
-				static std::string resource;
-				static std::string params;
+class OSRMWrapper {
+public:
+    static std::string buffer;
+    static std::string host;
+    static std::string port;
+    static std::string resource;
+    static std::string params;
 
-				static size_t callback(void*,size_t,size_t,void*);
-				static boost::property_tree::ptree request(const PositionGeo&,const PositionGeo&);
+    static size_t callback(void*,size_t,size_t,void*);
+    static boost::property_tree::ptree request(const PositionGeo&,const PositionGeo&);
 };
 #endif
