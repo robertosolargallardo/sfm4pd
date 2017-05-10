@@ -6,15 +6,15 @@ from matplotlib.animation import FuncAnimation
 import matplotlib.image as mpimg
 import matplotlib.animation as animation
 
-if len(sys.argv) < 3:
+if len(sys.argv) < 4:
    print "Not enough arguments!"
-   print "python plot.py <settings-file-json> <input-dir>"
+   print "python plot.py <settings-file-json> <map-file-png> <input-dir>"
    sys.exit(0)
 
-Writer = animation.writers['ffmpeg']
-writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
+#Writer = animation.writers['ffmpeg']
+#writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
 
-inputdir=sys.argv[2]
+inputdir=sys.argv[3]
 
 settings=json.load(open(sys.argv[1],"r"))
 
@@ -24,7 +24,7 @@ xmax=float(settings["limits"]["top-right"]["lat"])
 ymin=float(settings["limits"]["bottom-left"]["lon"])
 ymax=float(settings["limits"]["top-right"]["lon"])
 
-img=plt.imread("/home/rsolar/PositionGeo/make_video/test.png")
+img=plt.imread(sys.argv[2])
 fig,ax=plt.subplots()
 ln,=plt.plot([],[],'ro',animated=True)
 
@@ -42,5 +42,5 @@ def update(frame):
 	return ln,
 
 ani=FuncAnimation(fig,update,duration,init_func=init,blit=True,interval=100)
-ani.save('output.mp4', writer=writer)
-#plt.show()
+#ani.save('output.mp4', writer=writer)
+plt.show()
