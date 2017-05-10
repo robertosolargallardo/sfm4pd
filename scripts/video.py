@@ -24,9 +24,14 @@ xmax=float(settings["limits"]["top-right"]["lat"])
 ymin=float(settings["limits"]["bottom-left"]["lon"])
 ymax=float(settings["limits"]["top-right"]["lon"])
 
+reference_points=[]
+for rp in settings["reference-points"]:
+	reference_points.append([float(rp["lat"]),float(rp["lon"])])
+
 img=plt.imread(sys.argv[2])
 fig,ax=plt.subplots()
-ln,=plt.plot([],[],'ro',animated=True)
+plt.plot(*zip(*reference_points),linestyle="",marker="o",markersize=10,color="green")
+ln,=plt.plot([],[],'ro',animated=True,markersize=2.5,color="black");
 
 def init():
 	ax.set_xlim(xmin,xmax)

@@ -1,10 +1,10 @@
 {
 	"number-of-pedestrians" : "1000",
 	"model" : "0",
-	"duration"  : "1000",
-	"min-speed" : "1",
-	"max-speed" : "2",
-	"delay"     : "1",
+	"duration"  : "10000",
+	"min-speed" : "0.3",
+	"max-speed" : "1.2",
+	"delay"     : "0",
 
 	"reference-points" : [
 		{
