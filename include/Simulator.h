@@ -11,9 +11,12 @@ class Simulator{
 	private:	boost::property_tree::ptree _fsettings;
 				std::vector<Pedestrian> _pedestrians;
 
+				void run(const uint32_t&,const bool&);
+				void calibrate(void);
+
 	public:	Simulator(void);
 				Simulator(const boost::property_tree::ptree&);
-		
+	
 				void run(void);
 
 				~Simulator(void);

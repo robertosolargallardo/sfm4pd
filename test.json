@@ -1,0 +1,33 @@
+{
+	"number-of-pedestrians" : "10000",
+	"model" : "0",
+	"duration"  : "1000",
+	"min-speed" : "1",
+	"max-speed" : "2",
+	"delay"     : "1",
+
+	"reference-points" : [
+		{
+			"lat":"-33.0288",
+			"lon":"-71.6406"
+		},
+		{
+			"lat":"-33.0432",
+			"lon":"-71.6291"
+		},
+		{
+			"lat":"-33.0513",
+			"lon":"-71.6008"
+		}
+	],
+	"limits" : {
+		"top-right" : {
+			"lat": "-33.0176",
+			"lon": "-71.5632"
+		},
+		"bottom-left" : {
+			"lat": "-33.0557",
+			"lon": "-71.6521"
+		}
+	}
+}

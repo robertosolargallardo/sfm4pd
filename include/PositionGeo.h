@@ -5,9 +5,9 @@
 #include <boost/property_tree/ptree.hpp>
 #include "OSRMWrapper.h"
 #include <cmath> 
-#define earthRadiusKm 6371.0
-#define deg2rad(deg) (deg * M_PI / 180.0)
-#define rad2deg(rad) (rad * 180.0 / M_PI)
+#define R 6371e3
+#define deg2rad(d) d*0.01745329251
+#define rad2deg(r) r*57.2957795131
 
 class PositionGeo{
    private: double _lon,_lat;
@@ -23,18 +23,19 @@ class PositionGeo{
             PositionGeo& operator=(const PositionGeo&);
             PositionGeo operator+(const PositionGeo&);
             PositionGeo operator-(const PositionGeo&);
-
             PositionGeo& operator*(const double&);
 
             bool operator==(const PositionGeo&);
             bool operator!=(const PositionGeo&);
 
-            void normalize(void);
+            //void normalize(void);
             double distance(const PositionGeo&);
-            void rotate(const double&);
-            double norm(void);
-            void to_rad(void);
-            void to_deg(void);
+				double bearing(const PositionGeo&);
+				void traslate(const PositionGeo&,const double&);
+            //void rotate(const double&);
+            //double norm(void);
+            //void to_rad(void);
+            //void to_deg(void);
 
             friend std::ostream& operator<<(std::ostream&,const PositionGeo&);
 };

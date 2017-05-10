@@ -97,10 +97,11 @@ void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> 
 			this->_path.pop_front();
 			speed-=d;
 		}
-		else{
-			destination.to_rad();
+		else{	
+			this->_current.traslate(destination,speed);
+			/*destination.to_rad();
 			this->_current.to_rad();
-			PositionGeo direction=(destination-this->_current);
+			PositionGeo direction=(destination-this->_current);*/
 			//direction.normalize();
 			/*std::cout <<"distance::"<< d << std::endl;
 			std::cout <<"speed::"<< speed << std::endl;
@@ -108,10 +109,10 @@ void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> 
 			std::cout <<"destination::"<< destination << std::endl;
 			std::cout <<"direction::"<< direction<< std::endl;*/
 			
-			std::normal_distribution<double> angle(0,0.01);
+			/*std::normal_distribution<double> angle(0,0.01);
 			direction.rotate(angle(rng));
 			this->_current+=direction*(speed);
-			this->_current.to_deg();
+			this->_current.to_deg();*/
 			//std::cout <<"new current::"<< this->_current << std::endl;
 			//exit(0);
 			break;
