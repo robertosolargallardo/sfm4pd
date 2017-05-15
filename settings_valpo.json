@@ -1,5 +1,5 @@
 {
-	"number-of-pedestrians" : "10",
+	"number-of-pedestrians" : "100000",
 	"model" : "0",
 	"duration"  : "10000",
 	"min-speed" : "1",

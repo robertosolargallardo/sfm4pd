@@ -11,8 +11,8 @@ if len(sys.argv) < 4:
    print "python plot.py <settings-file-json> <map-file-png> <input-dir>"
    sys.exit(0)
 
-#Writer = animation.writers['ffmpeg']
-#writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
+Writer = animation.writers['ffmpeg']
+writer = Writer(fps=15, metadata=dict(artist='Me'), bitrate=1800)
 
 inputdir=sys.argv[3]
 
@@ -47,5 +47,5 @@ def update(frame):
 	return ln,
 
 ani=FuncAnimation(fig,update,duration,init_func=init,blit=True,interval=100)
-#ani.save('output.mp4', writer=writer)
+#ani.save('output_valpo.mp4', writer=writer)
 plt.show()
