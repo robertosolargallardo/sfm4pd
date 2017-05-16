@@ -56,7 +56,7 @@ void Pedestrian::extract_path(boost::property_tree::ptree &_route) {
             boost::property_tree::ptree::iterator lon=intersection.second.get_child("location").begin();
             boost::property_tree::ptree::iterator lat=++intersection.second.get_child("location").begin();
 
-            this->_path.push_back(PositionGeo(lat->second.get<double>(""),lon->second.get<double>("")));
+            //this->_path.push_back(PositionGeo(lat->second.get<double>(""),lon->second.get<double>(""))); //TODO
         }
     }
 }
@@ -67,11 +67,14 @@ void Pedestrian::random_init_position( const std::pair<PositionGeo,PositionGeo> 
     while(true) {
         double lat=random_lat(rng);
         double lon=random_lon(rng);
-        PositionGeo p(lat,lon);
+		  double alt=0.0;
+        PositionGeo p(lat,lon,alt);
 
         boost::property_tree::ptree fresponse=OSRMWrapper::request(p,_reference_point);
 
         if(fresponse.get<std::string>("code").compare("Ok")==0) {
+				boost::property_tree::ptree felevation=SRTM3Wrapper::request(p);
+				p.alt(felevation.get<double>("elevation"));
             this->_current=p;
             break;
         }

@@ -9,6 +9,7 @@
 #include <boost/property_tree/ptree.hpp>
 #include "PositionGeo.h"
 #include "OSRMWrapper.h"
+#include "SRTM3Wrapper.h"
 
 extern std::mt19937 rng;
 

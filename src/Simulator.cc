@@ -6,10 +6,11 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings,const std::st
     this->_outputdir=_outputdir;
     this->_fsettings=_fsettings;
     std::list<PositionGeo> reference_points;
-    std::pair<PositionGeo,PositionGeo> limits(PositionGeo(this->_fsettings.get<double>("limits.bottom-left.lat"),this->_fsettings.get<double>("limits.bottom-left.lon")),PositionGeo(this->_fsettings.get<double>("limits.top-right.lat"),this->_fsettings.get<double>("limits.top-right.lon")));
+    
+	 std::pair<PositionGeo,PositionGeo> limits(PositionGeo(this->_fsettings.get<double>("limits.bottom-left.lat"),this->_fsettings.get<double>("limits.bottom-left.lon"),0.0),PositionGeo(this->_fsettings.get<double>("limits.top-right.lat"),this->_fsettings.get<double>("limits.top-right.lon"),0.0));//TODO 0.0
 
     for(auto& freference_point : this->_fsettings.get_child("reference-points"))
-        reference_points.push_back(PositionGeo(freference_point.second.get<double>("lat"),freference_point.second.get<double>("lon")));
+        reference_points.push_back(PositionGeo(freference_point.second.get<double>("lat"),freference_point.second.get<double>("lon"),0.0));//TODO 0.0
 
     for(uint32_t id=0; id<this->_fsettings.get<uint32_t>("number-of-pedestrians"); ++id)
         this->_pedestrians.push_back(Pedestrian(id,this->_fsettings.get<double>("min-speed"),this->_fsettings.get<double>("max-speed"),this->_fsettings.get<double>("delay"),this->_fsettings.get<unsigned int>("model"),reference_points,limits));

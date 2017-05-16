@@ -6,5 +6,11 @@
 			"resource" : "/route/v1/driving/",
 			"params" : "steps=true"
 		}
-
+	"srtm3" : 
+		{
+			"host" : "http://citiaps2.diinf.usach.cl",
+			"port" : "5001",
+			"resource" : "/elevation/",
+			"params" : ""
+		}
 }

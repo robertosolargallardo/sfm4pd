@@ -11,15 +11,20 @@
 
 class PositionGeo {
 private:
-    double _lon,_lat;
+    double _lon,_lat,_alt;
 
 public:
     PositionGeo(void);
-    PositionGeo(const double &_lon,const double &_lat);
+    PositionGeo(const double&,const double&,const double&);
     ~PositionGeo(void);
 
     double lon(void) const;
     double lat(void) const;
+    double alt(void) const;
+		
+    void lon(const double&);
+    void lat(const double&);
+    void alt(const double&);
 
     PositionGeo& operator+=(const PositionGeo&);
     PositionGeo& operator=(const PositionGeo&);

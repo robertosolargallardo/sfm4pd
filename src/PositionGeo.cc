@@ -2,19 +2,33 @@
 PositionGeo::PositionGeo(void) {
     this->_lat=0.0;
     this->_lon=0.0;
+    this->_alt=0.0;
 }
-PositionGeo::PositionGeo(const double &_lat,const double &_lon) {
+PositionGeo::PositionGeo(const double &_lat,const double &_lon,const double &_alt) {
     this->_lat=_lat;
     this->_lon=_lon;
+    this->_alt=_alt;
 }
 PositionGeo::~PositionGeo(void) {
     ;
 }
-double PositionGeo::lon(void) const {
+void PositionGeo::lon(const double &_lon){
+	this->_lon=_lon;
+}
+void PositionGeo::lat(const double &_lat){
+	this->_lat=_lat;
+}
+void PositionGeo::alt(const double &_alt){
+	this->_alt=_alt;
+}
+double PositionGeo::lon(void) const{
     return(this->_lon);
 }
-double PositionGeo::lat(void) const {
+double PositionGeo::lat(void) const{
     return(this->_lat);
+}
+double PositionGeo::alt(void) const{
+    return(this->_alt);
 }
 PositionGeo& PositionGeo::operator+=(const PositionGeo &_p) {
     this->_lat=rad2deg(deg2rad(this->_lat)+deg2rad(_p._lat));
@@ -24,9 +38,10 @@ PositionGeo& PositionGeo::operator+=(const PositionGeo &_p) {
 PositionGeo& PositionGeo::operator=(const PositionGeo &_p) {
     this->_lat=_p._lat;
     this->_lon=_p._lon;
+    this->_alt=_p._alt;
     return(*this);
 }
-PositionGeo PositionGeo::operator+(const PositionGeo &_p) {
+/*PositionGeo PositionGeo::operator+(const PositionGeo &_p) {
     return PositionGeo(rad2deg(deg2rad(this->_lat)+deg2rad(_p._lat)),rad2deg(deg2rad(this->_lon)+deg2rad(_p._lon)));
 
 }
@@ -37,12 +52,12 @@ PositionGeo& PositionGeo::operator*(const double &_speed) {
     this->_lat=rad2deg(deg2rad(this->_lat)*_speed);
     this->_lon=rad2deg(deg2rad(this->_lon)*_speed);
     return(*this);
-}
+}*/
 bool PositionGeo::operator==(const PositionGeo &_p) {
-    return(this->_lat==_p._lat && this->_lon==_p._lon);
+    return(this->_lat==_p._lat && this->_lon==_p._lon && this->_alt==_p._alt);
 }
 bool PositionGeo::operator!=(const PositionGeo &_p) {
-    return(!(this->_lat==_p._lat && this->_lon==_p._lon));
+    return(!(this->_lat==_p._lat && this->_lon==_p._lon && this->_alt==_p._alt));
 }
 /*void PositionGeo::normalize(void){
 	double n=this->norm();
@@ -53,7 +68,7 @@ double PositionGeo::norm(void){
 	return(sqrt(this->_lat*this->_lat+this->_lon*this->_lon));
 }*/
 std::ostream& operator<<(std::ostream& _stream,const PositionGeo &_p) {
-    _stream << _p._lat << "," << _p._lon;
+    _stream << _p._lat << "," << _p._lon << "," << _p._alt;
     return(_stream);
 }
 double PositionGeo::distance(const PositionGeo &_p) {

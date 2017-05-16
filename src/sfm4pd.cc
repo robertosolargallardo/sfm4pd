@@ -68,6 +68,7 @@ int main(int argc,char **argv) {
         }
         boost::property_tree::ptree fosrm;
         read_json(osrm, fosrm);
+
         OSRMWrapper::host=fosrm.get<std::string>("osrm.host");
         OSRMWrapper::port=fosrm.get<std::string>("osrm.port");
         OSRMWrapper::resource=fosrm.get<std::string>("osrm.resource");
