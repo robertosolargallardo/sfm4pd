@@ -11,7 +11,7 @@ Pedestrian::Pedestrian(const Pedestrian &_pedestrian) {
     this->_path=_pedestrian._path;
     this->_current=_pedestrian._current;
 }
-Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const double &_delay,const unsigned int &_model,const std::list<PositionGeo> &_reference_points,const std::pair<PositionGeo,PositionGeo> &_limits) {
+/*Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const double &_delay,const unsigned int &_model,const std::list<PositionGeo> &_reference_points,const std::pair<PositionGeo,PositionGeo> &_limits) {
     this->_id=_id;
     this->_min_speed=_min_speed;
     this->_max_speed=_max_speed;
@@ -47,8 +47,8 @@ Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double
         exit(EXIT_FAILURE);
     }
     }
-}
-void Pedestrian::extract_path(boost::property_tree::ptree &_route) {
+}*/
+/*void Pedestrian::extract_path(boost::property_tree::ptree &_route) {
     boost::property_tree::ptree steps=_route.get_child("legs").begin()->second.get_child("steps");
 
     for(auto& step : steps) {
@@ -81,16 +81,12 @@ void Pedestrian::random_init_position( const std::pair<PositionGeo,PositionGeo> 
     }
 }
 
-Pedestrian::~Pedestrian(void) {
-    this->_path.clear();
-}
 
 void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> &_neighbors) {
     double d=0.0;
     std::uniform_real_distribution<double> random_speed(_min_speed,_max_speed);
     double speed=random_speed(rng);
 
-    //std::cout << "entra" << std::endl;
     while(!this->_path.empty()) {
         PositionGeo destination=this->_path.front();
         d=this->_current.distance(destination);
@@ -101,26 +97,17 @@ void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> 
             speed-=d;
         } else {
             this->_current.traslate(destination,speed);
-            /*destination.to_rad();
-            this->_current.to_rad();
-            PositionGeo direction=(destination-this->_current);*/
-            //direction.normalize();
-            /*std::cout <<"distance::"<< d << std::endl;
-            std::cout <<"speed::"<< speed << std::endl;
-            std::cout <<"current::"<< this->_current << std::endl;
-            std::cout <<"destination::"<< destination << std::endl;
-            std::cout <<"direction::"<< direction<< std::endl;*/
-
-            /*std::normal_distribution<double> angle(0,0.01);
-            direction.rotate(angle(rng));
-            this->_current+=direction*(speed);
-            this->_current.to_deg();*/
-            //std::cout <<"new current::"<< this->_current << std::endl;
-            //exit(0);
             break;
         }
     }
 }
 PositionGeo Pedestrian::current(void) {
     return(this->_current);
+}
+uint32_t Pedestrian::id(void) const{
+	return(this->_id);
+}
+*/
+Pedestrian::~Pedestrian(void) {
+    this->_path.clear();
 }

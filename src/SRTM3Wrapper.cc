@@ -12,9 +12,14 @@ size_t SRTM3Wrapper::callback(void *contents, size_t size, size_t nmemb, void *u
     return(realsize);
 }
 
-boost::property_tree::ptree SRTM3Wrapper::request(const PositionGeo &_p) {
+boost::property_tree::ptree SRTM3Wrapper::request(const Position &_p) {
+	 Geographic g=_p.geographic();
+	 return(SRTM3Wrapper::request(g));
+}
+boost::property_tree::ptree SRTM3Wrapper::request(const Geographic &_g) {
     boost::property_tree::ptree fresponse;
-    std::string url=std::string(host + std::string(":") + port + resource + boost::lexical_cast<std::string>(_p.lat()) + "," + boost::lexical_cast<std::string>(_p.lon()));
+
+    std::string url=std::string(host + std::string(":") + port + resource + boost::lexical_cast<std::string>(_g.longitude()) + "," + boost::lexical_cast<std::string>(_g.latitude()));
 
     CURL *curl=NULL;
     CURLcode res;

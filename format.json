@@ -1,0 +1,54 @@
+{
+	"duration"  : "10000",
+	"model" : "0",
+
+	"pedestrians":[
+		{
+			"number" : "1000",
+			"type" : "faster",
+			"speed" : {
+				"min" : "0.6", 
+				"max" : "1.2"
+			}
+		},
+		{
+			"number" : "1000",
+			"type" : "slower",
+			"speed" : {
+				"min" : "0.2", 
+				"max" : "0.6"
+			}
+		}
+	]
+	
+
+	"reference-points" : [
+		{
+			"latitude":"-33.0288",
+			"longitude":"-71.6406"
+		},
+		{
+			"latitude":"-33.0432",
+			"longitude":"-71.6291"
+		},
+		{
+			"latitude":"-33.0513",
+			"longitude":"-71.6008"
+		}
+	],
+	"limits" : {
+		"min" : {
+			"latitude": "-33.0176",
+			"longitude": "-71.5632"
+		},
+		"max" : {
+			"latitude": "-33.0557",
+			"longitude": "-71.6521"
+		}
+	},	
+	"output":{
+		"directory-path"  : "./results",
+		"filename-prefix" : "pedestrians_",
+		"filename-sufix"  : ".txt"
+	}
+}
