@@ -17,8 +17,11 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings) {
         reference_points.push_back(Position(g));
 	 }
 
+	 uint32_t id=0U;
     for(auto fpedestrians : this->_fsettings.get_child("pedestrians")){
-		cout << fpedestrians.second.get<uint32_t>("number") << endl;
+		for(uint32_t i=0U;i<fpedestrians.second.get<uint32_t>("number");i++,id++){
+			Pedestrian p(id,fpedestrians.second.get<double>("speed.min"),fpedestrians.second.get<double>("speed.max"),fpedestrians.second.get<std::string>("model"),fpedestrians.second.get<std::string>("type"),limits);
+		}
 	 }
 //PositionGeo(freference_point.second.get<double>("lat"),freference_point.second.get<double>("lon"),0.0));//TODO 0.0
     

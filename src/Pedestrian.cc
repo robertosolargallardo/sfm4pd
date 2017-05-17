@@ -6,11 +6,29 @@ Pedestrian::Pedestrian(const Pedestrian &_pedestrian) {
     this->_id=_pedestrian._id;
     this->_min_speed=_pedestrian._min_speed;
     this->_max_speed=_pedestrian._max_speed;
-    this->_delay=_pedestrian._delay;
     this->_model=_pedestrian._model;
+    this->_type=_pedestrian._type;
     this->_path=_pedestrian._path;
     this->_current=_pedestrian._current;
 }
+Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const std::string &_model,const std::string &_type,const Limits &_limits){
+    this->_id=_id;
+    this->_min_speed=_min_speed;
+    this->_max_speed=_max_speed;
+    this->_model=MobilityModel(this->_hash(_model));
+    this->_type=PedestrianType(this->_hash(_type));//TODO not yet used
+}
+Pedestrian& Pedestrian::operator=(const Pedestrian &_pedestrian){
+    this->_id=_pedestrian._id;
+    this->_min_speed=_pedestrian._min_speed;
+    this->_max_speed=_pedestrian._max_speed;
+    this->_model=_pedestrian._model;
+    this->_type=_pedestrian._type;
+    this->_path=_pedestrian._path;
+    this->_current=_pedestrian._current;
+	 return(*this);
+}
+/*Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const double &_delay,const unsigned int &_model,const std::list<PositionGeo> &_reference_points,const std::pair<PositionGeo,PositionGeo> &_limits) {*/
 /*Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const double &_delay,const unsigned int &_model,const std::list<PositionGeo> &_reference_points,const std::pair<PositionGeo,PositionGeo> &_limits) {
     this->_id=_id;
     this->_min_speed=_min_speed;
@@ -100,14 +118,13 @@ void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> 
             break;
         }
     }
-}
-PositionGeo Pedestrian::current(void) {
+}*/
+Position Pedestrian::current(void) {
     return(this->_current);
 }
 uint32_t Pedestrian::id(void) const{
 	return(this->_id);
 }
-*/
 Pedestrian::~Pedestrian(void) {
     this->_path.clear();
 }

@@ -155,5 +155,10 @@
 			"lat": "-33.06976",
 			"lon": "-71.6594"
 		}
-	}
+	},
+   "output":{
+      "directory-path"  : "./results_valpo",
+      "filename-prefix" : "pedestrians_",
+      "filename-sufix"  : ".txt"
+   }
 }
