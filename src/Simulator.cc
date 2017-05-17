@@ -6,16 +6,19 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings) {
     std::list<Position> reference_points;
     this->_fsettings=_fsettings;
 
-	 Limits limits(Position(Geographic(this->_fsettings.get<double>("limits.min.longitude"),this->_fsettings.get<double>("limits.min.latitude"),0.0)),
-                  Position(Geographic(this->_fsettings.get<double>("limits.max.longitude"),this->_fsettings.get<double>("limits.max.latitude"),0.0)));
+	 Limits limits(Position(Geographic(this->_fsettings.get<double>("limits.min.longitude"),this->_fsettings.get<double>("limits.min.latitude"),0.0)),Position(Geographic(this->_fsettings.get<double>("limits.max.longitude"),this->_fsettings.get<double>("limits.max.latitude"),0.0)));
 
 	 this->_grid=Grid(limits);
 
     for(auto freference_point : this->_fsettings.get_child("reference-points")){
-		  Geographic g=Geographic(this->_fsettings.get<double>("longitude"),this->_fsettings.get<double>("latitude"),0.0);
+		  Geographic g=Geographic(freference_point.second.get<double>("longitude"),freference_point.second.get<double>("latitude"),0.0);
 	     boost::property_tree::ptree felevation=SRTM3Wrapper::request(g);
 		  g.elevation(felevation.get<double>("elevation"));
         reference_points.push_back(Position(g));
+	 }
+
+    for(auto fpedestrians : this->_fsettings.get_child("pedestrians")){
+		cout << fpedestrians.second.get<uint32_t>("number") << endl;
 	 }
 //PositionGeo(freference_point.second.get<double>("lat"),freference_point.second.get<double>("lon"),0.0));//TODO 0.0
     

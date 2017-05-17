@@ -19,7 +19,7 @@ boost::property_tree::ptree SRTM3Wrapper::request(const Position &_p) {
 boost::property_tree::ptree SRTM3Wrapper::request(const Geographic &_g) {
     boost::property_tree::ptree fresponse;
 
-    std::string url=std::string(host + std::string(":") + port + resource + boost::lexical_cast<std::string>(_g.longitude()) + "," + boost::lexical_cast<std::string>(_g.latitude()));
+    std::string url=std::string(host + std::string(":") + port + resource +"?"+ boost::lexical_cast<std::string>(_g.longitude()) + "," + boost::lexical_cast<std::string>(_g.latitude()));
 
     CURL *curl=NULL;
     CURLcode res;
@@ -36,7 +36,7 @@ boost::property_tree::ptree SRTM3Wrapper::request(const Geographic &_g) {
 
     curl_easy_cleanup(curl);
     curl_global_cleanup();
-
+	 
     std::istringstream iss(buffer);
     read_json(iss,fresponse);
     SRTM3Wrapper::buffer.clear();

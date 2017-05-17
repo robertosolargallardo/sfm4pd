@@ -4,6 +4,8 @@
 #include <unistd.h>
 #include <fstream>
 #include "../include/Simulator.h"
+#include "../include/OSRMWrapper.h"
+#include "../include/SRTM3Wrapper.h"
 
 std::random_device device;
 std::mt19937 rng(device());
@@ -19,7 +21,7 @@ int main(int argc,char **argv) {
     std::string settings=std::string();
     std::string services=std::string();
 
-    while ((c = getopt(argc, argv, "f:s")) != -1) {
+    while ((c=getopt(argc, argv, "f:s:")) != -1) {
         switch (c) {
         case 'f':
             settings=std::string(optarg);
@@ -52,13 +54,18 @@ int main(int argc,char **argv) {
             std::cerr << "Error::File \"" << services << "\" does not exists" << std::endl;
             exit(EXIT_FAILURE);
         }
-        /*boost::property_tree::ptree fosrm;
-        read_json(osrm, fosrm);
+        boost::property_tree::ptree fservices;
+        read_json(services,fservices);
 
-        OSRMWrapper::host=fosrm.get<std::string>("osrm.host");
-        OSRMWrapper::port=fosrm.get<std::string>("osrm.port");
-        OSRMWrapper::resource=fosrm.get<std::string>("osrm.resource");
-        OSRMWrapper::params=fosrm.get<std::string>("osrm.params");*/
+        OSRMWrapper::host=fservices.get<std::string>("osrm.host");
+        OSRMWrapper::port=fservices.get<std::string>("osrm.port");
+        OSRMWrapper::resource=fservices.get<std::string>("osrm.resource");
+        OSRMWrapper::params=fservices.get<std::string>("osrm.params");
+
+        SRTM3Wrapper::host=fservices.get<std::string>("srtm3.host");
+        SRTM3Wrapper::port=fservices.get<std::string>("srtm3.port");
+        SRTM3Wrapper::resource=fservices.get<std::string>("srtm3.resource");
+        SRTM3Wrapper::params=fservices.get<std::string>("srtm3.params");
     }
 
     boost::property_tree::ptree fsettings;

@@ -1,7 +1,6 @@
 {
 	"duration"  : "10000",
 	"model" : "0",
-
 	"pedestrians":[
 		{
 			"number" : "1000",
@@ -12,16 +11,14 @@
 			}
 		},
 		{
-			"number" : "1000",
+			"number" : "2000",
 			"type" : "slower",
 			"speed" : {
 				"min" : "0.2", 
 				"max" : "0.6"
 			}
 		}
-	]
-	
-
+	],
 	"reference-points" : [
 		{
 			"latitude":"-33.0288",
