@@ -53,7 +53,6 @@ public:
     void insert(const shared_ptr<Pedestrian>&);
     void remove(const Pedestrian&);
     void search(const Pedestrian&);
-    Neighbors neighbors_of(const Pedestrian&,const NeighborhoodType&);
-
+    Neighbors neighbors_of(const Pedestrian&,const NeighborhoodType&,const unsigned int&,const double&);
 };
 #endif

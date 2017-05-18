@@ -26,7 +26,7 @@ void Grid::remove(const Pedestrian &_pedestrian){
 void Grid::search(const Pedestrian &_pedestrian){
 
 }
-Pedestrians neighbors_of(const Pedestrian &_pedestrian,const NeighborhoodType &_type){
+Pedestrians neighbors_of(const Pedestrian &_pedestrian,const NeighborhoodType &_type,const unsigned int &_number_of_neighbors,const double &_angle){
 	Pedestrians p;
 	return(p);
 }
