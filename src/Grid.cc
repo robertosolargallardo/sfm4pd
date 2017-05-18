@@ -17,7 +17,7 @@ Grid& Grid::operator=(const Grid &_grid){
 	this->_limits=_grid._limits;
 	return(*this);
 }
-void Grid::insert(const Pedestrian &_pedestrian){
+void Grid::insert(const shared_ptr<Pedestrian> &_pedestrian){
 
 }
 void Grid::remove(const Pedestrian &_pedestrian){
@@ -26,7 +26,7 @@ void Grid::remove(const Pedestrian &_pedestrian){
 void Grid::search(const Pedestrian &_pedestrian){
 
 }
-Pedestrians neighbors_of(const Pedestrian &_pedestrian,const Neighborhood &_mode){
+Pedestrians neighbors_of(const Pedestrian &_pedestrian,const NeighborhoodType &_type){
 	Pedestrians p;
 	return(p);
 }

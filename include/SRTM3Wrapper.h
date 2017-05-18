@@ -5,7 +5,8 @@
 #include <curl/curl.h>
 #include <sstream>
 #include <boost/lexical_cast.hpp>
-#include "Position.h"
+#include "Cartesian.h"
+#include "Geographic.h"
 
 class SRTM3Wrapper{
 public:
@@ -17,6 +18,6 @@ public:
 
     static size_t callback(void*,size_t,size_t,void*);
     static boost::property_tree::ptree request(const Geographic&);
-    static boost::property_tree::ptree request(const Position&);
+    static boost::property_tree::ptree request(const Cartesian&);
 };
 #endif

@@ -119,7 +119,7 @@ void Pedestrian::update_position(const std::vector<std::shared_ptr<Pedestrian>> 
         }
     }
 }*/
-Position Pedestrian::current(void) {
+Cartesian Pedestrian::current(void) {
     return(this->_current);
 }
 uint32_t Pedestrian::id(void) const{

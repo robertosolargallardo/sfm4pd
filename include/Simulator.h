@@ -14,9 +14,9 @@
 class Simulator {
 private: 
     Grid _grid;
-
+	 std::list<Cartesian> _reference_points;
+    std::vector<shared_ptr<Pedestrian>> _pedestrians;
     boost::property_tree::ptree _fsettings;
-    //std::vector<Pedestrian> _pedestrians;//TODO deprecated, now using _grid
 
     void run(const uint32_t&,const bool&);
     void calibrate(void);

@@ -12,9 +12,8 @@ size_t SRTM3Wrapper::callback(void *contents, size_t size, size_t nmemb, void *u
     return(realsize);
 }
 
-boost::property_tree::ptree SRTM3Wrapper::request(const Position &_p) {
-	 Geographic g=_p.geographic();
-	 return(SRTM3Wrapper::request(g));
+boost::property_tree::ptree SRTM3Wrapper::request(const Cartesian &_p) {
+	 return(SRTM3Wrapper::request(_p.geographic()));
 }
 boost::property_tree::ptree SRTM3Wrapper::request(const Geographic &_g) {
     boost::property_tree::ptree fresponse;

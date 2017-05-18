@@ -2,7 +2,7 @@
 	"duration"  : "10000",
 	"pedestrians":[
 		{
-			"number" : "1000",
+			"number" : "5000",
 			"model" : "ShortestPath",
 			"type" : "2",
 			"speed" : {

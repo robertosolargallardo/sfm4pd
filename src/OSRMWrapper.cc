@@ -12,10 +12,8 @@ size_t OSRMWrapper::callback(void *contents, size_t size, size_t nmemb, void *us
     return(realsize);
 }
 
-boost::property_tree::ptree OSRMWrapper::request(const Position &_src,const Position &_dst) {
-	 Geographic src=_src.geographic();
-	 Geographic dst=_src.geographic();
-	 return(OSRMWrapper::request(src,dst));
+boost::property_tree::ptree OSRMWrapper::request(const Cartesian &_src,const Cartesian &_dst) {
+	 return(OSRMWrapper::request(_src.geographic(),_dst.geographic()));
 }
 boost::property_tree::ptree OSRMWrapper::request(const Geographic &_src,const Geographic &_dst) {
     boost::property_tree::ptree fresponse;
