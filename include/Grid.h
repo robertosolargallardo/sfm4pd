@@ -6,17 +6,19 @@
 #include "Limits.h"
 #include "Position.h"
 #include "Pedestrian.h"
+#define DELTA_X 1.0 //metros
+#define DELTA_Y 1.0 //metros
 
 enum NeighborhoodType{MOORE1,MOORE2,VONNEUMANN1,VONNEUMANN2};
 
 using namespace std;
 struct PedestrianComparator {
-    bool operator()(const Pedestrian &_p1,const Pedestrian &_p2) const {
-        return(_p1.id()<_p2.id());
+    bool operator()(const shared_ptr<Pedestrian> &_p1,const shared_ptr<Pedestrian> &_p2) const {
+        return(_p1->id()<_p2->id());
     }
 };
 
-typedef set<Pedestrian,PedestrianComparator> Pedestrians;
+typedef set<std::shared_ptr<Pedestrian>,PedestrianComparator> Pedestrians;
 typedef Pedestrians Neighbors;
 
 class Grid {
@@ -38,6 +40,9 @@ private:
         void operator=(const Cell &_cell) {
             this->_pedestrians=_cell._pedestrians;
         }
+        void insert(const std::shared_ptr<Pedestrian> &_p){
+            this->_pedestrians.insert(this->_pedestrians.begin(),_p);
+		  }
     };
 
     map<pair<uint32_t,uint32_t>,Cell>  _cells;
