@@ -2,18 +2,18 @@
 	"duration"  : "10000",
 	"pedestrians":[
 		{
-			"number" : "5000",
+			"number" : "5",
 			"model" : "ShortestPath",
-			"type" : "2",
+			"type" : "Citizen",
 			"speed" : {
 				"min" : "0.6", 
 				"max" : "1.2"
 			}
 		},
 		{
-			"number" : "2000",
+			"number" : "2",
 			"model" : "FollowTheCrowd",
-			"type" : "0",
+			"type" : "Tourist",
 			"speed" : {
 				"min" : "0.2", 
 				"max" : "0.6"
