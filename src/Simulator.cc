@@ -17,30 +17,40 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings) {
 
 	 uint32_t id=0U;
     for(auto fpedestrians : this->_fsettings.get_child("pedestrians")){
-		for(uint32_t i=0U;i<fpedestrians.second.get<uint32_t>("number");i++,id++){
-			Cartesian position=this->random_position_generator(limits,*this->_reference_points.begin());
-			shared_ptr<Pedestrian> p=make_shared<Pedestrian>(position,id,fpedestrians.second.get<double>("speed.min"),fpedestrians.second.get<double>("speed.max"),fpedestrians.second.get<std::string>("model"),fpedestrians.second.get<std::string>("type"));
+		uint32_t number_of_pedestrians=fpedestrians.second.get<uint32_t>("number");
+		double speed_min=fpedestrians.second.get<double>("speed.min");
+		double speed_max=fpedestrians.second.get<double>("speed.max");
+		std::string mobility_model=fpedestrians.second.get<std::string>("model");
+		std::string pedestrian_type=fpedestrians.second.get<std::string>("type");
 
-			switch(p->model()){
+		for(uint32_t i=0U;i<number_of_pedestrians;i++,id++){
+			Cartesian position=this->random_position_generator(limits,*this->_reference_points.begin());
+			//shared_ptr<Pedestrian> p=make_shared<Pedestrian>(id,speed_min,speed_max,mobility_model,pedestrian_type);
+
+			switch(this->_hash(mobility_model)){
 				case SHORTESTPATH:{
+					std::list<std::shared_ptr<Cartesian>> route=this->shortest_path(position);
+					while(!route.empty()){
+						//p->memory.push_back();
+						route.pop_front();
+					}
 					break;
 				};
 				case FOLLOWTHECROWD:{
-					break; //no hacer nada
+					break;
 				};
 				default:{
-					std::cerr << "ERROR::Unknown Mobility Model: " << p->model() << std::endl;
+					std::cerr << "ERROR::Unknown Mobility Model: " << mobility_model << std::endl;
 					exit(EXIT_FAILURE);
 				}
 			}
 
-			this->_pedestrians.push_back(p);
-			this->_grid.insert(p);
+			//this->_pedestrians.push_back(p);
+			//this->_grid.insert(p);
 		}
 	 }
     this->calibrate();
 }
-//TODO HAY Q ARREGLAR ESTO PQ TARDA MUCHO.
 std::list<std::shared_ptr<Cartesian>> Simulator::shortest_path(const Cartesian &_position){
 	double mindist=DBL_MAX,d=0.0;
    boost::property_tree::ptree optimal_route;
@@ -69,8 +79,10 @@ std::list<std::shared_ptr<Cartesian>> Simulator::shortest_path(const Cartesian &
 				route.push_back(c);
         }
     }
+	 route.pop_front();
 	 return(route);
 }
+//TODO HAY Q ARREGLAR ESTO PQ TARDA MUCHO.
 Cartesian Simulator::random_position_generator(const Limits &_limits,const Cartesian &_reference_point){
 	 std::uniform_real_distribution<double> x(_limits.min().x(),_limits.max().x());
 	 std::uniform_real_distribution<double> y(_limits.min().y(),_limits.max().y());

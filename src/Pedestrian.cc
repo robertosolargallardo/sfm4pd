@@ -11,11 +11,12 @@ Pedestrian::Pedestrian(const Pedestrian &_pedestrian) {
     this->_type=_pedestrian._type;
     this->_memory=_pedestrian._memory;
 }
-Pedestrian::Pedestrian(const Cartesian &_position,const uint32_t &_id,const double &_min_speed,const double &_max_speed,const std::string &_model,const std::string &_type){
+Pedestrian::Pedestrian(const uint32_t &_id,const double &_min_speed,const double &_max_speed,const std::string &_model,const std::string &_type,const Cartesian &_position,const Cartesian &_direction){
     this->_id=_id;
     this->_min_speed=_min_speed;
     this->_max_speed=_max_speed;
 	 this->_position=_position;
+	 this->_direction=_direction;
     this->_model=MobilityModel(this->_hash(_model));
     this->_type=PedestrianType(this->_hash(_type));//TODO not yet used
 }

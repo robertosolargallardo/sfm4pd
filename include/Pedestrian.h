@@ -71,7 +71,7 @@ private:
 public:
     Pedestrian(void);
     Pedestrian(const Pedestrian&);
-	 Pedestrian(const Cartesian&,const uint32_t&,const double&,const double&,const std::string&,const std::string&);
+	 Pedestrian(const uint32_t&,const double&,const double&,const std::string&,const std::string&,const Cartesian&,const Cartesian&);
     ~Pedestrian(void);
 	 Pedestrian& operator=(const Pedestrian&);
 
