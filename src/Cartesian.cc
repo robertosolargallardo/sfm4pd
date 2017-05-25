@@ -17,6 +17,24 @@ Cartesian& Cartesian::operator=(const Cartesian &_c) {
     this->_data=_c._data;
     return(*this);
 }
+Cartesian& Cartesian::operator+=(const Cartesian &_c){
+	this->_data[0]+=_c._data[0];
+	this->_data[1]+=_c._data[1];
+	this->_data[2]+=_c._data[2];
+	return(*this);
+}
+Cartesian& Cartesian::operator-=(const Cartesian &_c){
+	this->_data[0]-=_c._data[0];
+	this->_data[1]-=_c._data[1];
+	this->_data[2]-=_c._data[2];
+	return(*this);
+}
+Cartesian Cartesian::operator-(const Cartesian &_c) const{
+	return(Cartesian(this->_data[0]-_c._data[0],this->_data[1]-_c._data[1],this->_data[2]-_c._data[2]));
+}
+Cartesian Cartesian::operator+(const Cartesian &_c) const{
+	return(Cartesian(this->_data[0]+_c._data[0],this->_data[1]+_c._data[1],this->_data[2]+_c._data[2]));
+}
 Cartesian::Cartesian(const double &_x,const double &_y,const double &_z){
 	this->_data={_x,_y,_z};
 }
