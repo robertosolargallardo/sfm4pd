@@ -1,5 +1,5 @@
-#ifndef _PEDESTRIAN_H_
-#define _PEDESTRIAN_H_
+#ifndef _AGENT_H_
+#define _AGENT_H_
 #include <list>
 #include <functional>
 #include <string>
@@ -17,9 +17,9 @@
 extern std::mt19937 rng;
 
 enum MobilityModel{SHORTESTPATH=9366416273040049814U,FOLLOWTHECROWD=10676684734677566718U,RANDOMWALKWAY,WORKINGDAY};
-enum PedestrianType{CITIZEN=4010033517051247807U,TOURIST=4046867417885078969U};
+enum AgentType{CITIZEN=4010033517051247807U,TOURIST=4046867417885078969U};
 
-class Pedestrian {
+class Agent {
 private:
 	 static std::hash<std::string> _hash;
 
@@ -27,7 +27,7 @@ private:
     double   _min_speed;
     double   _max_speed;
     MobilityModel _model;
-	 PedestrianType _type;
+	 AgentType _type;
 
     Cartesian _position;
     Cartesian _direction;
@@ -69,11 +69,11 @@ private:
 
 
 public:
-    Pedestrian(void);
-    Pedestrian(const Pedestrian&);
-	 Pedestrian(const uint32_t&,const double&,const double&,const std::string&,const std::string&,const Cartesian&,const Cartesian&);
-    ~Pedestrian(void);
-	 Pedestrian& operator=(const Pedestrian&);
+    Agent(void);
+    Agent(const Agent&);
+	 Agent(const uint32_t&,const double&,const double&,const std::string&,const std::string&,const Cartesian&,const Cartesian&);
+    ~Agent(void);
+	 Agent& operator=(const Agent&);
 
     Cartesian position(void);
     Cartesian direction(void);
@@ -87,8 +87,8 @@ public:
     /*void random_init_position(const std::pair<PositionGeo,PositionGeo>&,const PositionGeo&);//TODO
     void extract_path(boost::property_tree::ptree&);//TODO
 
-    //Pedestrian(const uint32_t&,const double&,const double&,const double&,const unsigned int&,const std::list<Position>&,const std::pair<PositionGeo,PositionGeo>&);
-    void move(const Pedestrians&);*/
+    //Agent(const uint32_t&,const double&,const double&,const double&,const unsigned int&,const std::list<Position>&,const std::pair<PositionGeo,PositionGeo>&);
+    void move(const Agents&);*/
 
 };
 #endif

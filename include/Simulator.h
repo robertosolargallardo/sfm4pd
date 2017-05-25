@@ -6,7 +6,7 @@
 #include <iostream>
 #include "Grid.h"
 #include "Cartesian.h"
-#include "Pedestrian.h"
+#include "Agent.h"
 #include "OSRMWrapper.h"
 #include "SRTM3Wrapper.h"
 
@@ -18,7 +18,7 @@ private:
 
     Grid _grid;
 	 std::list<Cartesian> _reference_points;
-    std::vector<shared_ptr<Pedestrian>> _pedestrians;
+    std::vector<shared_ptr<Agent>> _pedestrians;
     boost::property_tree::ptree _fsettings;
 
     void run(const uint32_t&,const bool&);

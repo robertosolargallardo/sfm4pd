@@ -17,16 +17,16 @@ Grid& Grid::operator=(const Grid &_grid){
 	this->_limits=_grid._limits;
 	return(*this);
 }
-void Grid::insert(const shared_ptr<Pedestrian> &_pedestrian){
+void Grid::insert(const shared_ptr<Agent> &_agent){
 
 }
-void Grid::remove(const Pedestrian &_pedestrian){
+void Grid::remove(const Agent &_agent){
 
 }
-void Grid::search(const Pedestrian &_pedestrian){
+void Grid::search(const Agent &_agent){
 
 }
-Pedestrians neighbors_of(const Pedestrian &_pedestrian,const NeighborhoodType &_type,const unsigned int &_number_of_neighbors,const double &_angle){
-	Pedestrians p;
+Agents neighbors_of(const Agent &_agent,const NeighborhoodType &_type,const unsigned int &_number_of_neighbors,const double &_angle){
+	Agents p;
 	return(p);
 }
