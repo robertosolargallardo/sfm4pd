@@ -28,6 +28,7 @@ Agent& Agent::operator=(const Agent &_agent){
     this->_model=_agent._model;
     this->_type=_agent._type;
     this->_memory=_agent._memory;
+
 	 return(*this);
 }
 MobilityModel Agent::model(void) const{

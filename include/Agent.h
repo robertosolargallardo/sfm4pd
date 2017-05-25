@@ -83,6 +83,10 @@ public:
 	
     Memory& memory(void);
 
+	 Cartesian repulsion(const Cartesian&);
+	 Cartesian aligning(const Cartesian&);
+	 Cartesian attraction(const Cartesian&);
+
     //asigna un PositionGeo dentro de &_limits
     /*void random_init_position(const std::pair<PositionGeo,PositionGeo>&,const PositionGeo&);//TODO
     void extract_path(boost::property_tree::ptree&);//TODO
