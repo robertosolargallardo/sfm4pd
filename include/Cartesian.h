@@ -3,7 +3,7 @@
 #define rad2deg(r) r*57.2957795131
 #include "Geographic.h"
 #include <array>
-#include <math.h>
+#include <cmath>
 
 #define EARTH_RADIUS 6371e3
 #define DIMENSIONS 3

@@ -11,7 +11,7 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings) {
     for(auto freference_point : this->_fsettings.get_child("reference-points")){
 		  Geographic g=Geographic(freference_point.second.get<double>("longitude"),freference_point.second.get<double>("latitude"));
 	     boost::property_tree::ptree felevation=SRTM3Wrapper::request(g);
-		  g.elevation(felevation.get<double>("elevation"));
+		  g.elevation(EARTH_RADIUS+felevation.get<double>("elevation"));
         this->_reference_points.push_back(g.cartesian());
 	 }
 
@@ -21,11 +21,11 @@ Simulator::Simulator(const boost::property_tree::ptree &_fsettings) {
 		double speed_min=fpedestrians.second.get<double>("speed.min");
 		double speed_max=fpedestrians.second.get<double>("speed.max");
 		std::string mobility_model=fpedestrians.second.get<std::string>("model");
-		std::string pedestrian_type=fpedestrians.second.get<std::string>("type");
+		std::string agent_type=fpedestrians.second.get<std::string>("type");
 
 		for(uint32_t i=0U;i<number_of_pedestrians;i++,id++){
 			Cartesian position=this->random_position_generator(limits,*this->_reference_points.begin());
-			//shared_ptr<Pedestrian> p=make_shared<Pedestrian>(id,speed_min,speed_max,mobility_model,pedestrian_type);
+			//shared_ptr<Agent> p=make_shared<Agent>(id,speed_min,speed_max,mobility_model,agent_type);
 
 			switch(this->_hash(mobility_model)){
 				case SHORTESTPATH:{
@@ -75,7 +75,7 @@ std::list<std::shared_ptr<Cartesian>> Simulator::shortest_path(const Cartesian &
 				Geographic g(flongitude->second.get<double>(""),flatitude->second.get<double>(""));
 				shared_ptr<Cartesian> c=make_shared<Cartesian>(g);
 				boost::property_tree::ptree felevation=SRTM3Wrapper::request(g);
-            c->z(felevation.get<double>("elevation"));
+            c->z(EARTH_RADIUS+felevation.get<double>("elevation"));
 				route.push_back(c);
         }
     }
@@ -92,7 +92,7 @@ Cartesian Simulator::random_position_generator(const Limits &_limits,const Carte
         boost::property_tree::ptree fresponse=OSRMWrapper::request(c,_reference_point);
         if(fresponse.get<std::string>("code").compare("Ok")==0) {
 				boost::property_tree::ptree felevation=SRTM3Wrapper::request(c);
-				c.z(felevation.get<double>("elevation"));
+				c.z(EARTH_RADIUS+felevation.get<double>("elevation"));
 				return(c);
         }
     }
