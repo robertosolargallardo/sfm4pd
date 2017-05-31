@@ -8,22 +8,23 @@
 #include "Geographic.h"
 
 class Position {
-private:	Cartesian _coords;
-	 
+private:
+    Cartesian _coords;
+
 public:
     Position(void);
-	 Position(const Position&);
-	 Position(const Cartesian&);
-	 Position(const Geographic&);
+    Position(const Position&);
+    Position(const Cartesian&);
+    Position(const Geographic&);
     ~Position(void);
 
-	 Position& operator=(const Position&);
-	 Geographic geographic(void) const;
+    Position& operator=(const Position&);
+    Geographic geographic(void) const;
 
     /*double lon(void) const;
     double lat(void) const;
     double alt(void) const;
-		
+
     void lon(const double&);
     void lat(const double&);
     void alt(const double&);

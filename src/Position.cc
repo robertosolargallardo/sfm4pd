@@ -1,27 +1,27 @@
 #include "../include/Position.h"
 Position::Position(void) {
-	;
+    ;
 }
-Position::Position(const Position &_p){
-	this->_coords=_p._coords;
+Position::Position(const Position &_p) {
+    this->_coords=_p._coords;
 }
-Position::Position(const Geographic &_g){
-	this->_coords.x(deg2rad(_g.longitude()));
-	this->_coords.y(deg2rad(_g.latitude()));
-	this->_coords.z(_g.elevation());
+Position::Position(const Geographic &_g) {
+    this->_coords.x(deg2rad(_g.longitude()));
+    this->_coords.y(deg2rad(_g.latitude()));
+    this->_coords.z(_g.elevation());
 }
-Position::Position(const Cartesian &_c){
-	this->_coords=_c;
+Position::Position(const Cartesian &_c) {
+    this->_coords=_c;
 }
 Position::~Position(void) {
     ;
 }
-Position& Position::operator=(const Position &_p){
-	this->_coords=_p._coords;
-	return(*this);
+Position& Position::operator=(const Position &_p) {
+    this->_coords=_p._coords;
+    return(*this);
 }
-Geographic Position::geographic(void) const{
-	return(Geographic(rad2deg(this->_coords.x()),rad2deg(this->_coords.y()),this->_coords.z()));
+Geographic Position::geographic(void) const {
+    return(Geographic(rad2deg(this->_coords.x()),rad2deg(this->_coords.y()),this->_coords.z()));
 }
 /*
 void Position::lon(const double &_lon){

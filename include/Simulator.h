@@ -4,7 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <iostream>
-#include "Grid.h"
+#include "Environment.h"
 #include "Cartesian.h"
 #include "Agent.h"
 #include "OSRMWrapper.h"
@@ -13,19 +13,19 @@
 #define CALIBRATION_TIME 100
 
 class Simulator {
-private: 
-	 static std::hash<std::string> _hash;
+private:
+    static std::hash<std::string> _hash;
 
-    Grid _grid;
-	 std::list<Cartesian> _reference_points;
-    std::vector<shared_ptr<Agent>> _pedestrians;
+    Environment _env;
+    std::list<Cartesian> _reference_points;
+    std::vector<Agent*> _agents;
     boost::property_tree::ptree _fsettings;
 
     void run(const uint32_t&,const bool&);
     void calibrate(void);
 
-	 Cartesian random_position_generator(const Limits&,const Cartesian&);
-	 std::list<std::shared_ptr<Cartesian>> shortest_path(const Cartesian&);
+    Geographic random_position_generator(const Limits&,const Cartesian&);
+    std::list<Cartesian*> shortest_path(const Cartesian&);
 
 public:
     Simulator(void);

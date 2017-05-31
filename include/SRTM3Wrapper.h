@@ -8,7 +8,7 @@
 #include "Cartesian.h"
 #include "Geographic.h"
 
-class SRTM3Wrapper{
+class SRTM3Wrapper {
 public:
     static std::string buffer;
     static std::string host;

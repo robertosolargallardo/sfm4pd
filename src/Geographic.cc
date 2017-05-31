@@ -15,13 +15,13 @@ Geographic::Geographic(const Geographic &_g) {
     this->_elevation=_g._elevation;
 }
 Geographic::Geographic(const Cartesian &_c) {
-	double elevation=sqrt(_c.x()*_c.x()+_c.y()*_c.y()+_c.z()*_c.z());
-   double latitude=asin(_c.y()/elevation);
-   double longitude=asin(_c.x()/(elevation*cos(latitude)));
+    double elevation=sqrt(_c.x()*_c.x()+_c.y()*_c.y()+_c.z()*_c.z());
+    double latitude=asin(_c.y()/elevation);
+    double longitude=asin(_c.x()/(elevation*cos(latitude)));
 
-	this->_latitude=rad2deg(latitude);
-	this->_longitude=rad2deg(longitude);
-	this->_elevation=elevation;
+    this->_latitude=rad2deg(latitude);
+    this->_longitude=rad2deg(longitude);
+    this->_elevation=elevation;
 }
 Geographic::~Geographic(void) {
     ;
@@ -51,6 +51,10 @@ void Geographic::latitude(const double &_latitude) {
 void Geographic::elevation(const double &_elevation) {
     this->_elevation=_elevation;
 }
-Cartesian Geographic::cartesian(void){
-	return(Cartesian(deg2rad(this->_longitude),deg2rad(this->_latitude),deg2rad(this->_elevation)));
+Cartesian Geographic::cartesian(void) {
+    return(Cartesian(deg2rad(this->_longitude),deg2rad(this->_latitude),deg2rad(this->_elevation)));
+}
+std::ostream& operator<<(std::ostream& _stream,const Geographic &_g) {
+    _stream << _g.longitude() << "," << _g.latitude() << "," << _g.elevation();
+    return(_stream);
 }

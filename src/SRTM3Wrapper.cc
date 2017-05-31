@@ -13,7 +13,7 @@ size_t SRTM3Wrapper::callback(void *contents, size_t size, size_t nmemb, void *u
 }
 
 boost::property_tree::ptree SRTM3Wrapper::request(const Cartesian &_p) {
-	 return(SRTM3Wrapper::request(_p.geographic()));
+    return(SRTM3Wrapper::request(_p.geographic()));
 }
 boost::property_tree::ptree SRTM3Wrapper::request(const Geographic &_g) {
     boost::property_tree::ptree fresponse;
@@ -29,13 +29,13 @@ boost::property_tree::ptree SRTM3Wrapper::request(const Geographic &_g) {
     curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,SRTM3Wrapper::callback);
 
     if((res = curl_easy_perform(curl))!=CURLE_OK) {
-        std::cerr << "curl_easy_perform() failed" << std::endl;
+        std::cerr << "SRTM3Wrapper::curl_easy_perform() failed" << std::endl;
         exit(EXIT_FAILURE);
     }
 
     curl_easy_cleanup(curl);
     curl_global_cleanup();
-	 
+
     std::istringstream iss(buffer);
     read_json(iss,fresponse);
     SRTM3Wrapper::buffer.clear();

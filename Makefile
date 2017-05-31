@@ -1,7 +1,7 @@
 TARGET=sfm4pd
 CXXFLAGS=-Wall -g -lcurl -std=c++11 -O3
 CXX=g++-4.9
-OBJS=obj/sfm4pd.o obj/OSRMWrapper.o obj/Agent.o obj/Simulator.o obj/SRTM3Wrapper.o obj/Grid.o obj/Limits.o obj/Geographic.o obj/Cartesian.o
+OBJS=obj/sfm4pd.o obj/OSRMWrapper.o obj/Agent.o obj/Simulator.o obj/SRTM3Wrapper.o obj/Environment.o obj/Limits.o obj/Geographic.o obj/Cartesian.o
 
 $(TARGET):$(OBJS)
 			 $(CXX) -o $@ $^ $(CXXFLAGS) 
@@ -18,7 +18,7 @@ obj/Agent.o:src/Agent.cc include/Agent.h
 				     $(CXX) $(CXXFLAGS) -c -o $@ $<
 obj/Simulator.o:src/Simulator.cc include/Simulator.h
 				    $(CXX) $(CXXFLAGS) -c -o $@ $<
-obj/Grid.o:src/Grid.cc include/Grid.h
+obj/Environment.o:src/Environment.cc include/Environment.h
 			  $(CXX) $(CXXFLAGS) -c -o $@ $<
 obj/Limits.o:src/Limits.cc include/Limits.h
 			    $(CXX) $(CXXFLAGS) -c -o $@ $<

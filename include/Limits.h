@@ -1,19 +1,20 @@
 #ifndef _LIMITS_H_
 #define _LIMITS_H_
-#include "Cartesian.h"
+#include "Geographic.h"
 #include <boost/property_tree/ptree.hpp>
 
 class Limits {
-	private:	Cartesian _min;
-    			Cartesian _max;
+private:
+    Geographic _min;
+    Geographic _max;
 public:
     Limits(void);
     Limits(const boost::property_tree::ptree&);
-    Limits(const Cartesian&,const Cartesian&);
+    Limits(const Geographic&,const Geographic&);
     Limits(const Limits&);
     Limits& operator=(const Limits&);
-    Cartesian min(void) const;
-    Cartesian max(void) const;
+    Geographic min(void) const;
+    Geographic max(void) const;
     ~Limits(void);
 };
 #endif

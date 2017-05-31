@@ -13,11 +13,11 @@ size_t OSRMWrapper::callback(void *contents, size_t size, size_t nmemb, void *us
 }
 
 boost::property_tree::ptree OSRMWrapper::request(const Cartesian &_src,const Cartesian &_dst) {
-	 return(OSRMWrapper::request(_src.geographic(),_dst.geographic()));
+    return(OSRMWrapper::request(_src.geographic(),_dst.geographic()));
 }
 boost::property_tree::ptree OSRMWrapper::request(const Geographic &_src,const Geographic &_dst) {
     boost::property_tree::ptree fresponse;
-	 
+
     std::string url=std::string(host + std::string(":") + port + resource + boost::lexical_cast<std::string>(_src.longitude()) + "," + boost::lexical_cast<std::string>(_src.latitude()) + ";" + boost::lexical_cast<std::string>(_dst.longitude()) + "," + boost::lexical_cast<std::string>(_dst.latitude()) + "?" + params);
 
     CURL *curl=NULL;
@@ -29,7 +29,7 @@ boost::property_tree::ptree OSRMWrapper::request(const Geographic &_src,const Ge
     curl_easy_setopt(curl,CURLOPT_WRITEFUNCTION,OSRMWrapper::callback);
 
     if((res = curl_easy_perform(curl))!=CURLE_OK) {
-        std::cerr << "curl_easy_perform() failed" << std::endl;
+        std::cerr << "OSRMWrapper::curl_easy_perform() failed" << std::endl;
         exit(EXIT_FAILURE);
     }
 

@@ -1,6 +1,6 @@
 {
-	"duration"  : "10000",
-	"pedestrians":[
+	"duration"  : "10",
+	"agents":[
 		{
 			"number" : "5",
 			"model" : "ShortestPath",
@@ -46,7 +46,7 @@
 	},	
 	"output":{
 		"directory-path"  : "./results",
-		"filename-prefix" : "pedestrians_",
+		"filename-prefix" : "step_",
 		"filename-sufix"  : ".txt"
 	}
 }
